@@ -2,9 +2,11 @@
   "name": "nextgram",
   "private": true,
   "dependencies": {
+    "babel-plugin-styled-components": "^1.2.1",
     "next": "^2.0.0-beta",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "styled-components": "^2.2.1"
   },
   "devDependencies": {
     "babel-eslint": "7.0.0",

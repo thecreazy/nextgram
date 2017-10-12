@@ -1,7 +1,33 @@
 import React from 'react'
 import Router from 'next/router'
+import styled from 'styled-components'
 
 import Modal from '../components/modal'
+
+const PhotoList = styled.div`
+  padding: 50px;
+  text-align: center;
+`
+
+const Photo = styled.div`
+  display: inline-block;
+`
+
+const PhotoLink = styled.a`
+  color: #333;
+  verticalAlign: middle;
+  cursor: pointer;
+  background: #eee;
+  display: inline-block;
+  width: 250px;
+  height: 250px;
+  line-height: 250px;
+  margin: 10px;
+  border: 2px solid transparent;
+  &:hover {
+    borderColor: blue;
+  }
+`
 
 export default class extends React.Component {
   static getInitialProps () {
@@ -40,11 +66,12 @@ export default class extends React.Component {
     Router.push(`/?photoId=${id}`, `/photo?id=${id}`)
   }
 
+  
+
   render () {
     const { url, photos } = this.props
-
     return (
-      <div className='list'>
+      <PhotoList>
         {
           url.query.photoId &&
             <Modal
@@ -54,45 +81,17 @@ export default class extends React.Component {
         }
         {
           photos.map((id) => (
-            <div key={id} className='photo'>
-              <a
-                className='photoLink'
+            <Photo key={id}>
+              <PhotoLink
                 href={`/photo?id=${id}`}
                 onClick={(e) => this.showPhoto(e, id)}
               >
                 {id}
-              </a>
-            </div>
+              </PhotoLink>
+            </Photo>
           ))
         }
-        <style jsx>{`
-          .list {
-            padding: 50px;
-            text-align: center;
-          }
-
-          .photo {
-            display: inline-block;
-          }
-
-          .photoLink {
-            color: #333;
-            verticalAlign: middle;
-            cursor: pointer;
-            background: #eee;
-            display: inline-block;
-            width: 250px;
-            height: 250px;
-            line-height: 250px;
-            margin: 10px;
-            border: 2px solid transparent;
-          }
-
-          .photoLink:hover {
-            borderColor: blue;
-          }
-        `}</style>
-      </div>
+      </PhotoList>
     )
   }
 }
